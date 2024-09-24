@@ -20,7 +20,6 @@ class CommentController extends Controller
             return response()->json(['message' => 'Unauthorized'], 401);
         }
 
-        // Create the comment
         $comment = Comment::create([
             'user_id' => Auth::id(),
             'post_id' => $validatedData['post_id'],
