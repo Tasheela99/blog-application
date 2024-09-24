@@ -2,22 +2,19 @@
 
 namespace App\Http\Middleware;
 
-use Auth;
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\JsonResponse;
 
 class AdminMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
-        if (! $request->user() || $request->user()->user_role !== "ADMIN") {
-            abort(403, 'Unauthorized action.');
+        if (!$request->user() || $request->user()->user_role !== "ADMIN") {
+            return new JsonResponse([
+                'error' => 'Unauthorized action.',
+                'message' => 'You do not have the required permissions to access this resource.'
+            ], 401);
         }
         return $next($request);
     }
