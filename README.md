@@ -1,17 +1,19 @@
-create .env file by copying .env.example
+1.create .env file by copying .env.example
 
     cp .env.example .env
+2.give the database credentials
 
-Add This lines to .env file
+3.Add This lines to .env file
 
     ADMIN_EMAIL=admin@example.com
     ADMIN_PASSWORD=password
 
-run npm install
+4.run npm install and composer
 
     npm install
+    composer install
 
-create database
+5.create database
 
     create database blog_api;
 
@@ -19,16 +21,17 @@ or run migrates
 
     php artisan migrate
 
-run migrates with seeders
+6.run migrates with seeders
 
     php artisan migrate:fresh --seed
 
 
-run the application
+7.run the application
 
     php artisan serve
 
 
-the postman api collection is
+8.the postman api collection is
 
     BlogApplication.postman_collection.json
+    and inside of the PostmanCollection Folder

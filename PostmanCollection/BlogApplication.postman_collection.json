@@ -1,0 +1,426 @@
+{
+	"info": {
+		"_postman_id": "ef718253-9eeb-4f2a-936a-ca3a33a17c46",
+		"name": "Blog Application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "29282267",
+		"_collection_link": "https://red-capsule-863549.postman.co/workspace/Vibe-Clothing~1934d729-2cbd-4d9e-aa66-f95cf3dffa27/collection/29282267-ef718253-9eeb-4f2a-936a-ca3a33a17c46?action=share&source=collection_link&creator=29282267"
+	},
+	"item": [
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "1|lWDxRY9tQVLFGi07MFmljILekbk7kkIfPetublRHa1422adc"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"My Third Post\",\n    \"body\": \"This is the body of the post.\",\n    \"status\": \"published\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{blogApiUrl}}/posts/create"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "4|JPOfVo8LEkyzJ5eUvUBx5KLtvXabLr1k2N0Avaqbb8351ce6"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"My Third Post\",\n    \"body\": \"This is the body of the post.\",\n    \"status\": \"draft\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{blogApiUrl}}/posts/update/:id",
+							"host": [
+								"{{blogApiUrl}}"
+							],
+							"path": [
+								"posts",
+								"update",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "7|50d515vU7rfjmwkFXiTdhFlAnPbV0uJwGPpTJUnI60fa755c"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{blogApiUrl}}/posts/delete/2"
+					},
+					"response": []
+				},
+				{
+					"name": "getAllPaginated",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "4|JPOfVo8LEkyzJ5eUvUBx5KLtvXabLr1k2N0Avaqbb8351ce6"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{blogApiUrl}}/posts/get-all-paginated?page=1&size=2",
+							"host": [
+								"{{blogApiUrl}}"
+							],
+							"path": [
+								"posts",
+								"get-all-paginated"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllPaginatedFiltered",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "4|JPOfVo8LEkyzJ5eUvUBx5KLtvXabLr1k2N0Avaqbb8351ce6"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{blogApiUrl}}/posts/get-all-paginated-filtered?page=0&size=2&search=post&status=published",
+							"host": [
+								"{{blogApiUrl}}"
+							],
+							"path": [
+								"posts",
+								"get-all-paginated-filtered"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "2"
+								},
+								{
+									"key": "search",
+									"value": "post"
+								},
+								{
+									"key": "status",
+									"value": "published"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "1|lWDxRY9tQVLFGi07MFmljILekbk7kkIfPetublRHa1422adc"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"post_id\":1,\n    \"body\":\"This Is the body\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{blogApiUrl}}/comments/create"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "5|ga3gWR9BPz3yLHb9tPnCea226x5AEZUaSxctXw0i1c01c61c"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"body\":\"This Is the New Body body\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{blogApiUrl}}/comments/update/:id",
+							"host": [
+								"{{blogApiUrl}}"
+							],
+							"path": [
+								"comments",
+								"update",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "3|b5cXA1vVyVe2vHDbvt9dEYe9zGYLgCyI4LwFi7Uk961a0ffc"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{blogApiUrl}}/comments/delete/:id",
+							"host": [
+								"{{blogApiUrl}}"
+							],
+							"path": [
+								"comments",
+								"delete",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "5|ga3gWR9BPz3yLHb9tPnCea226x5AEZUaSxctXw0i1c01c61c"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"body\":\"This Is the New Body body\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{blogApiUrl}}/comments/get-all"
+					},
+					"response": []
+				},
+				{
+					"name": "getAllByPost",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "5|ga3gWR9BPz3yLHb9tPnCea226x5AEZUaSxctXw0i1c01c61c"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"body\":\"This Is the New Body body\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{blogApiUrl}}/posts/:id/comments/get-all",
+							"host": [
+								"{{blogApiUrl}}"
+							],
+							"path": [
+								"posts",
+								":id",
+								"comments",
+								"get-all"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Tasheela Jayawickrama\",\n    \"email\": \"tasheelajaqyaa@gmail.com\",\n    \"password\": \"passwor\",\n    \"password_confirmation\": \"passwor\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{blogApiUrl}}/register"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"admin@example.com\",\n    \"password\": \"password\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{blogApiUrl}}/login"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "blogApiUrl",
+			"value": "http://localhost:8000/api/v1"
+		}
+	]
+}
